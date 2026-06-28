@@ -23,5 +23,8 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Secrets — keep .env in repo but never commit real secrets
-# .env
+# Secrets
+.env
+
+# Database backups (contain real data)
+backups/
