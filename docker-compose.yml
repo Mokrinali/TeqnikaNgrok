@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: teknika
+      POSTGRES_USER: postgres
+      TZ: Asia/Tbilisi
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:${DB_PASSWORD}@db:5432/teknika
+      ADMIN_CODE: ${ADMIN_CODE}
+      JWT_SECRET: ${JWT_SECRET}
+      TZ: Asia/Tbilisi
+    volumes:
+      - photos:/app/photos
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+  backup:
+    image: postgres:16
+    volumes:
+      - pgdata:/var/lib/postgresql/data:ro
+      - ./backups:/backups
+    entrypoint: >
+      sh -c 'while true; do
+        sleep 10;
+        pg_dump -h db -U postgres teknika > /backups/teknika_$$(date +%Y%m%d_%H%M).sql;
+        find /backups -name "*.sql" -mtime +45 -delete;
+        sleep 86400;
+      done'
+    environment:
+      PGPASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  photos:

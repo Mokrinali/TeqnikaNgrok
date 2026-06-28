@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env.local
+
+# Node
+node_modules/
+dist/
+.cache/
+
+# Docker volumes / data
+pgdata/
+photos/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets — keep .env in repo but never commit real secrets
+# .env
