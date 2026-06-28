@@ -1,5 +1,5 @@
 """
-Migration script: TeknikaTabeli2 (LiteDB) → TeqnikisTabeli3 (PostgreSQL)
+Migration script: TeknikaTabeli2 (LiteDB) → TeqnikaNgrok (PostgreSQL)
 
 Usage:
     1. Start TeknikaTabeli2, log in as admin, open:  http://localhost:PORT/export-data
