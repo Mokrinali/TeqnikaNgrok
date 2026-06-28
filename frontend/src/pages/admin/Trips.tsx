@@ -71,7 +71,7 @@ export default function Trips() {
     if (token) qs.set('_token', token)
     if (applied.contractor_id) qs.set('contractor_id', applied.contractor_id)
     if (applied.site_id) qs.set('site_id', applied.site_id)
-    window.open(`/teqnika/api/reports/export-trips-excel?${qs}`)
+    window.open(`/teqnika-ngrok/api/reports/export-trips-excel?${qs}`)
   }
 
   const total      = trips.reduce((s, t) => s + t.total, 0)

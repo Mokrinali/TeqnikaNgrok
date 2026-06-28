@@ -90,7 +90,7 @@ export default function Reports() {
     if (applied.contractor_id) qs.set('contractor_id', applied.contractor_id)
     if (applied.site_id) qs.set('site_id', applied.site_id)
     if (extra) Object.entries(extra).forEach(([k, v]) => qs.set(k, v))
-    window.open(`/teqnika/api/reports/export-excel?${qs}`)
+    window.open(`/teqnika-ngrok/api/reports/export-excel?${qs}`)
   }
 
   return (

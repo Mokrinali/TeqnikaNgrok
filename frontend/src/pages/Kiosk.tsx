@@ -15,7 +15,7 @@ export default function Kiosk() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('/teqnika/construction-anim.svg')
+    fetch('/teqnika-ngrok/construction-anim.svg')
       .then(r => r.text())
       .then(svg => { if (svgRef.current) svgRef.current.innerHTML = svg })
       .catch(() => {})

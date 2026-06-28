@@ -38,7 +38,7 @@ function Root() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/teqnika">
+    <BrowserRouter basename="/teqnika-ngrok">
       <Routes>
         <Route path="/" element={<Root />} />
         <Route path="/kiosk" element={<RequireSession><Layout><Kiosk /></Layout></RequireSession>} />

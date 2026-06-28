@@ -1,4 +1,4 @@
-const BASE = '/teqnika/api'
+const BASE = '/teqnika-ngrok/api'
 
 function getToken(): string | null {
   const s = localStorage.getItem('teknika_session')
